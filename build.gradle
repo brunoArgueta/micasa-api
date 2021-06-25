@@ -1,0 +1,49 @@
+plugins {
+	id 'org.springframework.boot' version '2.4.4'
+	id 'io.spring.dependency-management' version '1.0.11.RELEASE'
+	id 'java'
+}
+
+ext['spring-security.version']='5.4.6'
+
+group = 'com.micasa'
+version = '1.0'
+sourceCompatibility = '11'
+
+configurations {
+	compileOnly {
+		extendsFrom annotationProcessor
+	}
+}
+
+repositories {
+	mavenCentral()
+}
+
+dependencies {
+	implementation 'org.springframework.boot:spring-boot-starter-web'
+
+	implementation 'org.springframework.boot:spring-boot-starter-security'
+
+
+	// ACCESSING-DATA JPA
+	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+	//runtimeOnly 'com.h2database:h2'
+	implementation group: 'org.postgresql', name: 'postgresql', version: '42.2.19'
+	implementation group: 'commons-dbcp', name: 'commons-dbcp', version: '1.4'
+	implementation 'junit:junit:4.12'
+	compile 'org.hibernate:hibernate-entitymanager:5.2.3.Final'
+
+
+	compileOnly 'org.projectlombok:lombok'
+	annotationProcessor 'org.projectlombok:lombok'
+
+	developmentOnly 'org.springframework.boot:spring-boot-devtools'
+
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	implementation 'org.springframework.security:spring-security-test'
+}
+
+test {
+	useJUnitPlatform()
+}
